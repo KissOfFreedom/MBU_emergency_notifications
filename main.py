@@ -103,8 +103,7 @@ class MyWindow(QMainWindow):
         self.current_tab_index = 0
         self.tabs.currentChanged.connect(self.tab_changed)
 
-        # Создание layout'ов
-        # vlayout = QVBoxLayout()
+        # Создание layout'а
         hlayout = QHBoxLayout()
 
         # Создаем горизонтальный QVBoxLayout и добавляем в него верхние кнопки
