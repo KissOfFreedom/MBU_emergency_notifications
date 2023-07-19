@@ -61,12 +61,6 @@ class MyWindow(QMainWindow):
         self.addButtonColumn = QPushButton("Добавить столбец", self)
         self.addButtonColumn.clicked.connect(self.add_column)
 
-        # Создание кнопок сортировки по активным сотрудникам или уволенным
-        # self.activeButton = QPushButton("Активный", self)
-        # self.activeButton.clicked.connect(lambda: self.sort_table_2)
-        # self.dismissedButton = QPushButton("Уволен", self)
-        # self.dismissedButton.clicked.connect(lambda: self.sort_table_2)
-
         # Создаем кнопку для добавления новой строки
         self.addButtonRow = QPushButton("Добавить строку", self)
         self.addButtonRow.clicked.connect(self.add_row)
@@ -112,7 +106,6 @@ class MyWindow(QMainWindow):
         horizontal_layout.addWidget(self.staff_button)
         horizontal_layout.addWidget(self.boss_button)
         horizontal_layout.addWidget(self.responsible_button)
-        #horizontal_layout.setContentsMargins(50, 50, 0, 700)
 
         # Создание "контейнера"
         container = QWidget()
@@ -125,22 +118,6 @@ class MyWindow(QMainWindow):
         hlayout.addWidget(container)
         # Устанавливаем отступы для layout'а
         hlayout.setContentsMargins(0, 0, 150, 0)
-
-        #container.setGeometry(50, 50, 0, 700)
-        #
-        # # Создание пространства (spacer'ов) для выравнивания "контейнера" по центру
-        # v_spacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-        # h_spacer = QSpacerItem(20, 40, QSizePolicy.Expanding, QSizePolicy.Minimum)
-        #
-        # # Добавление пространства и "контейнера" в вертикальный layout
-        # vlayout.addItem(v_spacer)
-        # vlayout.addWidget(container)
-        # vlayout.addItem(v_spacer)
-        #
-        # # Добавление пространства и вертикального layout в горизонтальный layout
-        # hlayout.addItem(h_spacer)
-        # hlayout.addLayout(vlayout)
-        # hlayout.addItem(h_spacer)
 
         # Создаем вертикальный QVBoxLayout и добавляем в него компоненты
         layout = QVBoxLayout()
@@ -165,7 +142,6 @@ class MyWindow(QMainWindow):
 
         # Создаем QWidget и устанавливаем QVBoxLayout в качестве макета
         widget = QWidget()
-        #widget.setLayout(horizontal_layout)
         widget.setLayout(layout)
         self.setCentralWidget(widget)
 
@@ -188,15 +164,11 @@ class MyWindow(QMainWindow):
         current_row_count = self.tabs.currentWidget().rowCount()
         self.tabs.currentWidget().setRowCount(current_row_count+1)
 
-    def sort_table_2(self):
-        current_names_column = None  # В эту переменную должно записываться кликнутое значение
-
     # Функция, отвечающая за проверку
     def check_action(self):
         vba_book = xw.Book("filename.xlsm")
         vba_macro2 = vba_book.macro("Макрос1(0)")
         vba_macro2()
-        # self.load_excel_data()
         vba_book.save()  # Сохраняем изменения в файле
         vba_book.close()  # Закрываем файл
         print("Проверка")
@@ -437,35 +409,6 @@ class MyWindow(QMainWindow):
         self.table6.resizeColumnsToContents()
         # Устанавливаем режим растягивания последнего столбца таблицы
         self.table6.horizontalHeader().setStretchLastSection(True)
-
-
-
-    # def save_table(self):
-    #     # Создайте новый Workbook
-    #     currentTable2 = self.tabs.currentWidget()
-    #     workbook = load_workbook("filename.xlsm", keep_vba=True)
-    #
-    #     # Получите активный лист (Sheet)
-    #     sheet = workbook.worksheets[self.current_tab_index]
-    #
-    #     if self.current_tab_index == 4 or self.current_tab_index == 5:
-    #         # Считайте данные из таблицы и перезапишите файл
-    #         for row in range(currentTable2.rowCount()):
-    #             for col in range(currentTable2.columnCount()):
-    #                 item = currentTable2.item(row, col)
-    #                 if item is not None:
-    #                     sheet.cell(row=row + 3, column=col + 2).value = item.text()
-    #     else:
-    #     # Считайте данные из таблицы и перезапишите файл
-    #         for row in range(currentTable2.rowCount()):
-    #             for col in range(currentTable2.columnCount()):
-    #                 item = currentTable2.item(row, col)
-    #                 if item is not None:
-    #                     sheet.cell(row=row + 9, column=col + 2).value = item.text()
-    #
-    #     # Сохраните изменения в файле
-    #     workbook.save("filename.xlsm", keep_vba=True)
-
 
     def save_table(self):
         currentTable2 = self.tabs.currentWidget()
