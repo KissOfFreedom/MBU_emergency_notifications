@@ -511,7 +511,6 @@ stylesheet12 = """
     }
 """
 
-
 if __name__ == "__main__":
     app = QApplication([])
     app.setStyleSheet(stylesheet12)
